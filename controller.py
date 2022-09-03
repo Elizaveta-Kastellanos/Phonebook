@@ -9,3 +9,8 @@ def Button_click_search():
     user_data_search = View_phonebook.Get_user_search()
     all_user_data = Model_Phonebook.search_phone_in_phonebook(user_data_search)
     return all_user_data
+
+def Button_click_delete():
+    user_data_search = View_phonebook.Get_user_delete()
+    answer = Model_Phonebook.delete_user(user_data_search)
+    return answer

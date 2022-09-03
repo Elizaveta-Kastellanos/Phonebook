@@ -12,18 +12,26 @@ def give_the_data_user(user_data_search):
     file_log_user_data = 'phonebook.txt'
     with open(file_log_user_data, 'r') as file:
         all_data_user = file.read()
-        if all_data_user.find(user_data_search) == -1:
-            return f'No person found with these parametrs.'
-        else:
-            all_data_user = all_data_user.split(f'\n')
-            answer = -1
-            answer_new = []
-            for i in range(0,len(all_data_user)):
-                answer = all_data_user[i].find(user_data_search)
-                if answer != -1:
-                    answer_new.append(all_data_user[i])
-            return answer_new
+        return all_data_user
 
-      
-       
-           
+def delete_user(user):
+    file_log_user_data = 'phonebook.txt'
+    with open(file_log_user_data, 'r') as file:
+        all_data_user = file.read().split(f'\n')
+        wh = len(all_data_user)
+        for i in range(0, wh):
+            ind = all_data_user[i].find(user)
+            if ind != -1:
+                tmp = i
+                break
+        all_data_user.pop(tmp)
+        all_data_user.pop(tmp-1)
+        for i in range(0,len(all_data_user)):
+            if len(all_data_user[i]) == 0:
+                all_data_user.pop(i)
+                break
+        with open(file_log_user_data, 'w') as file_new:
+            for i in range(0,len(all_data_user)):
+                file_new.write(f'{all_data_user[i]}\n')
+
+        
